@@ -1,10 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: nginx-service
+  namespace: default
 spec:
-  ports:
-  - port: 80
-    targetPort: 80
   selector:
     app: nginx
+  ports:
+    - protocol: TCP
+      port: 80       # Port exposed by the Service
+      targetPort: 80 # Port on the Nginx container
+  type: ClusterIP
